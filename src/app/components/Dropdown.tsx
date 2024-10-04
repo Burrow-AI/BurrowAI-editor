@@ -31,11 +31,13 @@ export function Dropdown({
 		}
 	}, [uploadUrl, toast])
 
+    
+
 	const copyHtml = useCallback(() => {
 		if (navigator && navigator.clipboard) {
 			navigator.clipboard.writeText(html)
 			toast.addToast({
-				icon: 'code',
+				icon: 'clipboard-copy',
 				title: 'Copied html to clipboard',
 			})
 		}
