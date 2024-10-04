@@ -12,7 +12,7 @@ import {
 	useToasts,
 	useValue,
 } from 'tldraw'
-import { useEffect } from 'react'
+import { ReactElement, useEffect } from 'react'
 import { Dropdown } from '../components/Dropdown'
 import { LINK_HOST, PROTOCOL } from '../lib/hosts'
 import { uploadLink } from '../lib/uploadLink'
@@ -46,8 +46,8 @@ export class PreviewShapeUtil extends BaseBoxShapeUtil<PreviewShape> {
 	override canEdit = () => true
 	override isAspectRatioLocked = (_shape: PreviewShape) => false
 	override canResize = (_shape: PreviewShape) => true
-	override canBind = (_shape: PreviewShape) => false
-	override canUnmount = () => false
+	// override canBind = (_shape: PreviewShape) => false
+	// override canUnmount = () => false
 
 	override component(shape: PreviewShape) {
 		const isEditing = useIsEditing(shape.id)
@@ -179,11 +179,11 @@ export class PreviewShapeUtil extends BaseBoxShapeUtil<PreviewShape> {
 		)
 	}
 
-	override toSvg(shape: PreviewShape, _ctx: SvgExportContext): SVGElement | Promise<SVGElement> {
+	override toSvg(shape: PreviewShape, _ctx: SvgExportContext): ReactElement | Promise<ReactElement | null> | null {
 		const g = document.createElementNS('http://www.w3.org/2000/svg', 'g')
 		// while screenshot is the same as the old one, keep waiting for a new one
 		return new Promise((resolve, _) => {
-			if (window === undefined) return resolve(g)
+			if (window === undefined) return resolve(g as any)
 			const windowListener = (event: MessageEvent) => {
 				if (event.data.screenshot && event.data?.shapeid === shape.id) {
 					const image = document.createElementNS('http://www.w3.org/2000/svg', 'image')
@@ -193,11 +193,11 @@ export class PreviewShapeUtil extends BaseBoxShapeUtil<PreviewShape> {
 					g.appendChild(image)
 					window.removeEventListener('message', windowListener)
 					clearTimeout(timeOut)
-					resolve(g)
+					resolve(g as any)
 				}
 			}
 			const timeOut = setTimeout(() => {
-				resolve(g)
+				resolve(g as any)
 				window.removeEventListener('message', windowListener)
 			}, 2000)
 			window.addEventListener('message', windowListener)
