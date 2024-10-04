@@ -16,7 +16,7 @@ export default function App() {
     <main>
     <div style={{ position: 'fixed', inset: 0 }}>
  
-    <Tldraw shareZone={<MakeRealButton />}>
+    <Tldraw components={{ SharePanel: () => <MakeRealButton /> }}>
 
     </Tldraw>
   </div>
