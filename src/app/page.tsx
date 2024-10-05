@@ -4,7 +4,9 @@ import '@tldraw/tldraw/tldraw.css'
 import { MakeRealButton } from './components/MakeRealButton'
 import { TldrawLogo } from './components/TldrawLogo'
 
-import { Mermaid } from './components/Mermaid';
+const Mermaid = dynamic(() => import('./components/Mermaid').then((mod) => mod.Mermaid), {
+  ssr: false,
+});
 
 
 const Tldraw = dynamic(async () => (await import('@tldraw/tldraw')).Tldraw, {
