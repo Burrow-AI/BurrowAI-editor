@@ -22,14 +22,16 @@ const mermaidChart = `
 
 export default function App() {
   return (
-    <main>
-       <Mermaid chart={mermaidChart} name="chart" />
-    {/* <div style={{ position: 'fixed', inset: 0 }}>
- 
-    <Tldraw components={{ SharePanel: () => <MakeRealButton /> }}>
+    <main className="flex flex-col min-h-screen">
+      {/* Tldraw Component */}
+      <div className="flex-grow">
+        <Tldraw components={{ SharePanel: () => <MakeRealButton /> }} />
+      </div>
 
-    </Tldraw>
-  </div> */}
-  </main>
+      {/* Mermaid Component */}
+      <div className="mt-4">
+        <Mermaid chart={mermaidChart} name="chart" />
+      </div>
+    </main>
   );
 }
