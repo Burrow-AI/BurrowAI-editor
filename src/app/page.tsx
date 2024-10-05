@@ -1,6 +1,7 @@
 'use client';
 import dynamic from 'next/dynamic'
 import '@tldraw/tldraw/tldraw.css'
+import 'react-split/style.css'; // 
 import { MakeRealButton } from './components/MakeRealButton'
 import { TldrawLogo } from './components/TldrawLogo'
 
@@ -29,17 +30,23 @@ const mermaidChart = `
 export default function App() {
   return (
     <main className="flex flex-col min-h-screen">
+    <Split
+      direction="vertical"
+      sizes={[70, 30]}
+      minSize={100}
+      gutterSize={5}
+      className="flex-grow flex flex-col"
+    >
       {/* Tldraw Component */}
-      <div className="flex-grow h-0 relative">
+      <div className="w-full h-full relative">
         <Tldraw components={{ SharePanel: () => <MakeRealButton /> }} />
       </div>
 
       {/* Mermaid Component */}
-      <div className="flex-shrink-0 h-64 mt-4 overflow-auto">
-        <div className="transform scale-75 origin-top-left">
-          <Mermaid chart={mermaidChart} name="chart" />
-        </div>
+      <div className="w-full h-full overflow-auto">
+        <Mermaid chart={mermaidChart} name="chart" />
       </div>
-    </main>
+    </Split>
+  </main>
   );
 }
