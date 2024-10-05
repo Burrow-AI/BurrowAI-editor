@@ -3,28 +3,33 @@ import dynamic from 'next/dynamic'
 import '@tldraw/tldraw/tldraw.css'
 import { MakeRealButton } from './components/MakeRealButton'
 import { TldrawLogo } from './components/TldrawLogo'
-import mermaid from 'mermaid';
+
+import { Mermaid } from './components/Mermaid';
 
 
-mermaid.initialize({
-  startOnLoad: true, // Automatically render diagrams on page load
-  theme: 'default',  // Choose a theme: default, forest, dark, neutral
-});
 const Tldraw = dynamic(async () => (await import('@tldraw/tldraw')).Tldraw, {
 	ssr: false,
 })
 
+const mermaidChart = `
+    graph LR
+      A[Start] --> B{Is it working?}
+      B -->|Yes| C[Great]
+      B -->|No| D[Fix it]
+      D --> B
+  `;
 
 
 export default function App() {
   return (
     <main>
-    <div style={{ position: 'fixed', inset: 0 }}>
+       <Mermaid chart={mermaidChart} name="chart" />
+    {/* <div style={{ position: 'fixed', inset: 0 }}>
  
     <Tldraw components={{ SharePanel: () => <MakeRealButton /> }}>
 
     </Tldraw>
-  </div>
+  </div> */}
   </main>
   );
 }
