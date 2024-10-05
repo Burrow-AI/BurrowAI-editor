@@ -19,11 +19,24 @@ const Tldraw = dynamic(async () => (await import('@tldraw/tldraw')).Tldraw, {
 })
 
 const mermaidChart = `
-  graph LR
-    A[Start] --> B{Is it working?}
-    B -->|Yes| C[Great]
-    B -->|No| D[Fix it]
-    D --> B
+ erDiagram
+    USER ||--o{ ORDER : places
+    USER {
+        int id
+        string username
+        string email
+        string passwordHash
+        datetime createdAt
+        datetime updatedAt
+    }
+    ORDER {
+        int id
+        datetime orderDate
+        float totalAmount
+        int userId
+        datetime createdAt
+        datetime updatedAt
+    }
 `;
 
 
