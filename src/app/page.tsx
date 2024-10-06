@@ -100,9 +100,18 @@ export default function App() {
             Other Tab
           </button>
         </div>
+         {/* Tabs */}
         
         <div className="h-full overflow-auto p-4">
-          <Mermaid chart={mermaidChart} name="chart" />
+        {activeTab === 'mermaid' &&(
+          <Mermaid chart={mermaidChart} name="chart" /> )}
+        
+        {activeTab === 'other' && (
+           <div className="w-full h-full p-4">
+           <h2 className="text-xl font-bold">Other Content</h2>
+           <p>This is a placeholder for other content or components you might want to add.</p>
+         </div>
+        )}
         </div>
       </div>
     </main>
