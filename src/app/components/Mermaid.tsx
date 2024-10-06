@@ -55,7 +55,7 @@ export const Mermaid: FC<IMermaid> = ({ chart, name }) => {
 
       <TransformWrapper>
         <TransformComponent contentClass="w-full" wrapperClass="w-full h-full">
-          <div className="mermaid w-full mb-100">{chart}</div>
+          <div className="mermaid w-full h-full">{chart}</div>
         </TransformComponent>{" "}
       </TransformWrapper>
     </div>

@@ -84,6 +84,7 @@ export default function App() {
           className="absolute inset-x-0 top-0 h-4 bg-gray-200 cursor-ns-resize" 
           onMouseDown={handleMouseDown}
         ></div>
+        
         <div className="h-full overflow-auto p-4">
           <Mermaid chart={mermaidChart} name="chart" />
         </div>
