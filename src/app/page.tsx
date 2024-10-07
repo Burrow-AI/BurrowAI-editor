@@ -42,7 +42,7 @@ const mermaidChart = `
 
 export default function App() {
   const [mermaidHeight, setMermaidHeight] = useState(256); // Initial height
-  const [activeTab, setActiveTab] = useState('mermaid');
+  const [activeTab, setActiveTab] = useState('dbschema');
   const isResizing = useRef(false);
   const startY = useRef(0);
 
@@ -91,7 +91,7 @@ export default function App() {
             className={`px-4 py-2 mr-2 ${activeTab === 'mermaid' ? 'bg-white' : 'bg-gray-300'}`}
             onClick={() => setActiveTab('mermaid')}
           >
-            Mermaid Diagram
+            DB Schema
           </button>
           <button 
             className={`px-4 py-2 ${activeTab === 'other' ? 'bg-white' : 'bg-gray-300'}`}
@@ -103,7 +103,7 @@ export default function App() {
          {/* Tabs */}
         
         <div className="h-full overflow-auto p-4">
-        {activeTab === 'mermaid' &&(
+        {activeTab === 'dbschema' &&(
           <Mermaid chart={mermaidChart} name="chart" /> )}
         
         {activeTab === 'other' && (
