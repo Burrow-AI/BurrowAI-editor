@@ -7,11 +7,14 @@ export function MakeRealButton() {
 	const { addToast } = useToasts()
 
 	const handleClick = useCallback(async () => {
+		console.log("gere")
 		try {
 			// const input = document.getElementById('openai_key_risky_but_cool') as HTMLInputElement
 			// const apiKey = input?.value ?? null
 			// if (!apiKey) throw Error('Make sure the input includes your API Key!')
 			console.log("editor", editor)
+			const selectedShapes = editor.getSelectedShapes()
+			console.log("selected shapes", selectedShapes)
 			//await makeReal(editor, apiKey)
 		} catch (e) {
 			console.error(e)
@@ -24,8 +27,8 @@ export function MakeRealButton() {
 	}, [editor, addToast])
 
 	return (
-		<button className="makeRealButton" onClick={handleClick}>
-			Make Real
+		<button  onClick={handleClick} className="draw-fast-button">
+			Generate 
 		</button>
 	)
 }
