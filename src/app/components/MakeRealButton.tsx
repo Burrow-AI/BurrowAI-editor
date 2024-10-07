@@ -1,5 +1,7 @@
 import { useEditor, useToasts } from '@tldraw/tldraw'
 import { useCallback } from 'react'
+
+import { Editor, createShapeId, getSvgAsImage, track } from '@tldraw/tldraw'
 //import { makeReal } from '../lib/makeReal'
 
 export function MakeRealButton() {
@@ -15,6 +17,18 @@ export function MakeRealButton() {
 			console.log("editor", editor)
 			const selectedShapes = editor.getSelectedShapes()
 			console.log("selected shapes", selectedShapes)
+			const svg = await editor.getSvg(selectedShapes, {
+				scale: 1,
+				background: true,
+			})
+
+			const serializer = new XMLSerializer();
+          const svgString = serializer.serializeToString(svg);
+			console.log("svg", svgString)
+
+		    const snap = editor.getSnapshot()
+
+			console.log("snap", snap)
 			//await makeReal(editor, apiKey)
 		} catch (e) {
 			console.error(e)
@@ -32,3 +46,5 @@ export function MakeRealButton() {
 		</button>
 	)
 }
+
+
