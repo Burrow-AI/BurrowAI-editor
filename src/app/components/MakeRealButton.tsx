@@ -1,7 +1,7 @@
-import { useEditor, useToasts } from '@tldraw/tldraw'
+import { useEditor, useToasts, getSvgAsImage} from '@tldraw/tldraw'
 import { useCallback } from 'react'
+import { blobToBase64 } from '../lib/blobToBase64'
 
-import { Editor, createShapeId, getSvgAsImage, track } from '@tldraw/tldraw'
 //import { makeReal } from '../lib/makeReal'
 
 export function MakeRealButton() {
@@ -22,9 +22,31 @@ export function MakeRealButton() {
 				background: true,
 			})
 
+			const svgStr = await editor.getSvgString(selectedShapes, {
+				scale: 1,
+				background: true,
+			})
+
+		
+		
+
 			const serializer = new XMLSerializer();
           const svgString = serializer.serializeToString(svg);
 			console.log("svg", svgString)
+
+			const blob = await getSvgAsImage(editor, svgString, {
+				height: 100,
+				type: 'png',
+				quality: 0.8,
+				scale: 1,
+				width: 100
+			})
+
+			console.log("blob", blob)
+
+			const dataUrl = await blobToBase64(blob)
+
+			console.log("dataurl", dataUrl)
 
 		    const snap = editor.getSnapshot()
 
