@@ -22,24 +22,21 @@ export function MakeRealButton() {
 				background: true,
 			})
 
-			const svgStr = await editor.getSvgString(selectedShapes, {
-				scale: 1,
-				background: true,
-			})
 
-		
-		
-
-			const serializer = new XMLSerializer();
+			// const svgStr = await editor.getSvgString(selectedShapes, {
+			// 	scale: 1,
+			// 	background: true,
+			// })
+		  const serializer = new XMLSerializer();
           const svgString = serializer.serializeToString(svg);
 			console.log("svg", svgString)
 
 			const blob = await getSvgAsImage(editor, svgString, {
-				height: 100,
+				height: 500,
 				type: 'png',
-				quality: 0.8,
+				quality: 1.8,
 				scale: 1,
-				width: 100
+				width: 500
 			})
 
 			console.log("blob", blob)
@@ -48,9 +45,9 @@ export function MakeRealButton() {
 
 			console.log("dataurl", dataUrl)
 
-		    const snap = editor.getSnapshot()
 
-			console.log("snap", snap)
+
+		//	console.log("snap", snap)
 			//await makeReal(editor, apiKey)
 		} catch (e) {
 			console.error(e)

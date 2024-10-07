@@ -72,57 +72,50 @@ export default function App() {
   }, [handleMouseMove, handleMouseUp]);
   
   return (
-    <main className="tldraw-wrapper" >
 
-    <div className="tldraw-wrapper__inner">
+    <main className="flex flex-col min-h-screen">
+      {/* Tldraw Component */}
+      <div className="flex-grow h-0 relative">
 
-    <Tldraw persistenceKey="burrow-draw" components={{ SharePanel: MakeRealButton }} />
-  </div>
-  </main>
+        <Tldraw persistenceKey="burrow-draw" components={{ SharePanel: MakeRealButton }} />
+      </div>
 
-    // <main className="flex flex-col min-h-screen">
-    //   {/* Tldraw Component */}
-    //   <div className="flex-grow h-0 relative">
-
-    //     <Tldraw persistenceKey="burrow-draw" components={{ SharePanel: MakeRealButton }} />
-    //   </div>
-
-    //   {/* Mermaid Component */}
-    //   <div className="flex-shrink-0 relative overflow-hidden border-t-2 border-gray-300"
-    //     style={{ height: `${mermaidHeight}px` }}>
-    //        <div 
-    //       className="absolute inset-x-0 top-0 h-4 bg-gray-200 cursor-ns-resize" 
-    //       onMouseDown={handleMouseDown}
-    //     ></div>
-    //      {/* Tabs */}
-    //      <div className="bg-gray-200 p-2">
-    //       <button 
-    //         className={`px-4 py-2 mr-2 ${activeTab === 'mermaid' ? 'bg-white' : 'bg-gray-300'}`}
-    //         onClick={() => setActiveTab('mermaid')}
-    //       >
-    //         DB Schema
-    //       </button>
-    //       <button 
-    //         className={`px-4 py-2 ${activeTab === 'other' ? 'bg-white' : 'bg-gray-300'}`}
-    //         onClick={() => setActiveTab('other')}
-    //       >
-    //         Other Tab
-    //       </button>
-    //     </div>
-    //      {/* Tabs */}
+      {/* Mermaid Component */}
+      <div className="flex-shrink-0 relative overflow-hidden border-t-2 border-gray-300"
+        style={{ height: `${mermaidHeight}px` }}>
+           <div 
+          className="absolute inset-x-0 top-0 h-4 bg-gray-200 cursor-ns-resize" 
+          onMouseDown={handleMouseDown}
+        ></div>
+         {/* Tabs */}
+         <div className="bg-gray-200 p-2">
+          <button 
+            className={`px-4 py-2 mr-2 ${activeTab === 'mermaid' ? 'bg-white' : 'bg-gray-300'}`}
+            onClick={() => setActiveTab('mermaid')}
+          >
+            DB Schema
+          </button>
+          <button 
+            className={`px-4 py-2 ${activeTab === 'other' ? 'bg-white' : 'bg-gray-300'}`}
+            onClick={() => setActiveTab('other')}
+          >
+            Other Tab
+          </button>
+        </div>
+         {/* Tabs */}
         
-    //     <div className="h-full overflow-auto p-4">
-    //     {activeTab === 'dbschema' &&(
-    //       <Mermaid chart={mermaidChart} name="chart" /> )}
+        <div className="h-full overflow-auto p-4">
+        {activeTab === 'dbschema' &&(
+          <Mermaid chart={mermaidChart} name="chart" /> )}
         
-    //     {activeTab === 'other' && (
-    //        <div className="w-full h-full p-4">
-    //        <h2 className="text-xl font-bold">Other Content</h2>
-    //        <p>This is a placeholder for other content or components you might want to add.</p>
-    //      </div>
-    //     )}
-    //     </div>
-    //   </div>
-    // </main>
+        {activeTab === 'other' && (
+           <div className="w-full h-full p-4">
+           <h2 className="text-xl font-bold">Other Content</h2>
+           <p>This is a placeholder for other content or components you might want to add.</p>
+         </div>
+        )}
+        </div>
+      </div>
+    </main>
   );
 }
