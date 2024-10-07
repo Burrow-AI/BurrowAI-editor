@@ -75,7 +75,7 @@ export default function App() {
     <main className="flex flex-col min-h-screen">
       {/* Tldraw Component */}
       <div className="flex-grow h-0 relative">
-        <Tldraw components={{ SharePanel: () => <MakeRealButton /> }} />
+        <Tldraw persistenceKey="burrow-draw" components={{ SharePanel: () => <MakeRealButton /> }} />
       </div>
 
       {/* Mermaid Component */}
